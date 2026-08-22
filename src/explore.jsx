@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Explore.css";
+import "./explore.css";
 
 function Explore({
   bounties = [],
