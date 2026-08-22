@@ -1,0 +1,494 @@
+.post-page {
+  min-height: 100vh;
+  background: #080808;
+  color: white;
+  padding: 50px 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.post-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: #a0a0a0;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 45px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  color: white;
+  transform: translateX(-4px);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.post-header {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.post-tag {
+  display: inline-block;
+  color: #ff4d00;
+  border: 1px solid #ff4d00;
+  padding: 7px 14px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+.post-header h1 {
+  font-size: 52px;
+  margin: 0 0 15px;
+  letter-spacing: 2px;
+}
+
+.post-header p {
+  color: #9a9a9a;
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.bounty-form {
+  background: #111;
+  border: 1px solid #242424;
+  padding: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  color: #c5c5c5;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: #090909;
+  border: 1px solid #303030;
+  color: white;
+  padding: 15px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.25s;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #ff4d00;
+  box-shadow: 0 0 0 1px #ff4d00;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+/* =========================
+   TWO COLUMN ROW
+========================= */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* =========================
+   CODE INPUT
+========================= */
+
+.code-group {
+  margin-top: 5px;
+}
+
+.code-input {
+  min-height: 320px !important;
+  resize: vertical;
+  background: #050505 !important;
+  border: 1px solid #333 !important;
+
+  color: #e8e8e8 !important;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace !important;
+
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+
+  tab-size: 2;
+}
+
+.code-input:focus {
+  border-color: #ff4d00 !important;
+  box-shadow:
+    0 0 0 1px #ff4d00,
+    0 0 20px rgba(255, 77, 0, 0.08) !important;
+}
+
+.code-group small {
+  margin-top: 10px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================
+   REWARD INPUT
+========================= */
+
+.reward-input {
+  display: flex;
+  align-items: center;
+  background: #090909;
+  border: 1px solid #303030;
+  transition: 0.25s;
+}
+
+.reward-input:focus-within {
+  border-color: #ff4d00;
+  box-shadow: 0 0 0 1px #ff4d00;
+}
+
+.reward-input span {
+  padding-left: 15px;
+  color: #ff4d00;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.reward-input input {
+  border: none;
+  flex: 1;
+}
+
+.reward-input input:focus {
+  box-shadow: none;
+}
+
+/* =========================
+   SUBMIT BUTTON
+========================= */
+
+.post-bounty-btn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  background: #ff4d00;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.post-bounty-btn:hover {
+  background: #ff6a2b;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   SUCCESS SCREEN
+========================= */
+
+.post-success {
+  max-width: 650px;
+  margin: 100px auto;
+  text-align: center;
+  background: #111;
+  border: 1px solid #242424;
+  padding: 70px 40px;
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 25px;
+  border: 2px solid #32d583;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #32d583;
+  font-size: 35px;
+}
+
+.post-success h1 {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.post-success p {
+  color: #999;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.success-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.explore-btn,
+.create-another-btn {
+  padding: 15px 22px;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.explore-btn {
+  background: #ff4d00;
+  color: white;
+}
+
+.explore-btn:hover {
+  background: #ff6a2b;
+}
+
+.create-another-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid #444;
+}
+
+.create-another-btn:hover {
+  border-color: white;
+}
+/* =========================
+
+   MULTIPLE TEST CASES
+
+========================= */
+
+.test-cases-section {
+
+  margin-bottom: 30px;
+
+}
+
+
+.test-cases-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 15px;
+
+}
+
+
+.test-cases-header label {
+
+  color: #c5c5c5;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 1.5px;
+
+}
+
+
+.add-test-case-btn {
+
+  background: transparent;
+
+  border: 1px solid #ff4d00;
+
+  color: #ff4d00;
+
+  padding: 9px 14px;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+
+}
+
+
+.add-test-case-btn:hover {
+
+  background: #ff4d00;
+
+  color: white;
+
+}
+
+
+.test-case-card {
+
+  background: #0c0c0c;
+
+  border: 1px solid #292929;
+
+  padding: 20px;
+
+  margin-bottom: 15px;
+
+}
+
+
+.test-case-title {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+
+}
+
+
+.test-case-title strong {
+
+  color: #ff4d00;
+
+  font-size: 11px;
+
+  letter-spacing: 1.3px;
+
+}
+
+
+.remove-test-case-btn {
+
+  background: transparent;
+
+  border: 1px solid #3a3a3a;
+
+  color: #999;
+
+  padding: 7px 11px;
+
+  font-size: 10px;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+
+}
+
+
+.remove-test-case-btn:hover {
+
+  border-color: #ff4d00;
+
+  color: #ff4d00;
+
+}
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .post-page {
+    padding: 30px 15px;
+  }
+
+  .back-btn {
+    margin-bottom: 35px;
+  }
+
+  .post-header h1 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .post-header p {
+    font-size: 14px;
+  }
+
+  .bounty-form {
+    padding: 25px 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .code-input {
+    min-height: 260px !important;
+    font-size: 13px !important;
+  }
+
+  .success-buttons {
+    flex-direction: column;
+  }
+
+  .explore-btn,
+  .create-another-btn {
+    width: 100%;
+  }
+
+  .post-success {
+    margin: 50px auto;
+    padding: 50px 25px;
+  }
+
+  .post-success h1 {
+    font-size: 27px;
+  }
+}

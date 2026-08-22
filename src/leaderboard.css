@@ -1,0 +1,615 @@
+/* =========================
+   PAGE
+========================= */
+
+.leaderboard-page {
+  min-height: 100vh;
+  background: #080909;
+  color: #f5f5f5;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.leaderboard-header {
+  height: 72px;
+
+  padding: 0 7%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom: 1px solid #202020;
+
+  background: #0b0c0c;
+}
+
+
+.leaderboard-logo {
+  font-size: 20px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.leaderboard-logo span {
+  margin-right: 8px;
+
+  font-size: 22px;
+}
+
+
+.leaderboard-back-btn {
+  padding: 10px 18px;
+
+  border: 1px solid #303030;
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #ddd;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+
+
+.leaderboard-back-btn:hover {
+  background: #171818;
+
+  border-color: #555;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.leaderboard-content {
+  width: 86%;
+
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 70px 0;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.leaderboard-hero {
+  text-align: center;
+
+  margin-bottom: 50px;
+}
+
+
+.leaderboard-kicker {
+  font-size: 12px;
+
+  letter-spacing: 3px;
+
+  color: #777;
+}
+
+
+.leaderboard-hero h1 {
+  margin: 14px 0;
+
+  font-size: 48px;
+
+  letter-spacing: -1px;
+}
+
+
+.leaderboard-hero p {
+  margin: 0;
+
+  color: #888;
+
+  font-size: 17px;
+}
+
+
+/* =========================
+   LEADERBOARD CARD
+========================= */
+
+.leaderboard-card {
+  border: 1px solid #242424;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  background: #0d0e0e;
+}
+
+
+/* =========================
+   ROW
+========================= */
+
+.leaderboard-row {
+  min-height: 82px;
+
+  display: grid;
+
+  /*
+    RANK
+    HACKER
+    SCORE
+    SOLVED
+    SUCCESS
+  */
+
+  grid-template-columns:
+    90px
+    1fr
+    150px
+    150px
+    130px;
+
+  align-items: center;
+
+  padding: 0 28px;
+
+  border-bottom: 1px solid #202020;
+}
+
+
+.leaderboard-row:last-child {
+  border-bottom: none;
+}
+
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+.leaderboard-table-header {
+  min-height: 50px;
+
+  background: #121313;
+
+  color: #777;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+
+/* =========================
+   TOP RANKERS
+========================= */
+
+.top-ranker {
+  background: #101111;
+}
+
+
+/* =========================
+   RANK
+========================= */
+
+.rank-cell {
+  display: flex;
+
+  align-items: center;
+}
+
+
+.rank-icon {
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   HACKER
+========================= */
+
+.hacker-cell {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+
+.hacker-avatar {
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #1c1d1d;
+
+  border: 1px solid #333;
+
+  font-weight: 800;
+
+  font-size: 15px;
+}
+
+
+.hacker-cell strong {
+  display: block;
+
+  font-size: 15px;
+}
+
+
+.champion-label {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
+
+  color: #777;
+}
+
+
+/* =========================
+   SCORE
+========================= */
+
+.score-cell strong {
+  display: block;
+
+  font-size: 20px;
+}
+
+
+.score-cell span,
+.solved-cell span {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color: #666;
+}
+
+
+/* =========================
+   SOLVED
+========================= */
+
+.solved-cell strong {
+  font-size: 17px;
+}
+
+
+/* =========================
+   SUCCESS RATE
+========================= */
+
+.success-cell strong {
+  font-size: 17px;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.leaderboard-empty {
+  padding: 80px 20px;
+
+  text-align: center;
+
+  border: 1px solid #242424;
+
+  border-radius: 16px;
+
+  background: #0d0e0e;
+}
+
+
+.empty-icon {
+  font-size: 45px;
+
+  margin-bottom: 15px;
+}
+
+
+.leaderboard-empty h2 {
+  margin: 0 0 10px;
+
+  font-size: 24px;
+}
+
+
+.leaderboard-empty p {
+  margin: 0;
+
+  color: #777;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.leaderboard-info {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 16px;
+
+  margin-top: 24px;
+}
+
+
+.leaderboard-info div {
+  padding: 24px;
+
+  border: 1px solid #242424;
+
+  border-radius: 12px;
+
+  background: #0d0e0e;
+}
+
+
+.leaderboard-info strong {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 22px;
+}
+
+
+.leaderboard-info span {
+  display: block;
+
+  color: #777;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.leaderboard-row:not(
+  .leaderboard-table-header
+):hover {
+  background: #141515;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .leaderboard-content {
+    width: 92%;
+
+    padding: 50px 0;
+  }
+
+
+  .leaderboard-hero h1 {
+    font-size: 40px;
+  }
+
+
+  .leaderboard-row {
+
+    grid-template-columns:
+      65px
+      1fr
+      120px
+      120px
+      100px;
+
+    padding: 0 18px;
+  }
+
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 700px) {
+
+  .leaderboard-row {
+
+    grid-template-columns:
+      55px
+      1fr
+      100px
+      90px;
+
+  }
+
+
+  /*
+    Hide success column
+    on smaller screens.
+  */
+
+  .leaderboard-row > :nth-child(5) {
+    display: none;
+  }
+
+
+  .leaderboard-table-header
+    > :nth-child(5) {
+    display: none;
+  }
+
+
+  .leaderboard-table-header {
+    font-size: 9px;
+  }
+
+
+  .hacker-avatar {
+    width: 36px;
+
+    height: 36px;
+  }
+
+
+  .leaderboard-info {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 560px) {
+
+  .leaderboard-header {
+    padding: 0 5%;
+  }
+
+
+  .leaderboard-logo {
+    font-size: 16px;
+  }
+
+
+  .leaderboard-content {
+    width: 94%;
+
+    padding: 40px 0;
+  }
+
+
+  .leaderboard-hero {
+    margin-bottom: 30px;
+  }
+
+
+  .leaderboard-hero h1 {
+    font-size: 32px;
+  }
+
+
+  .leaderboard-hero p {
+    font-size: 14px;
+  }
+
+
+  .leaderboard-row {
+
+    min-height: 70px;
+
+    grid-template-columns:
+      45px
+      1fr
+      75px;
+
+    padding: 0 12px;
+
+    gap: 5px;
+
+  }
+
+
+  /*
+    Hide solved and success
+    columns on mobile.
+  */
+
+  .leaderboard-row > :nth-child(4),
+  .leaderboard-row > :nth-child(5) {
+    display: none;
+  }
+
+
+  .leaderboard-table-header
+    > :nth-child(4),
+  .leaderboard-table-header
+    > :nth-child(5) {
+    display: none;
+  }
+
+
+  .rank-icon {
+    font-size: 16px;
+  }
+
+
+  .hacker-cell {
+    gap: 8px;
+  }
+
+
+  .hacker-avatar {
+    width: 32px;
+
+    height: 32px;
+
+    font-size: 12px;
+  }
+
+
+  .hacker-cell strong {
+    font-size: 13px;
+  }
+
+
+  .score-cell strong {
+    font-size: 16px;
+  }
+
+
+  .champion-label {
+    font-size: 7px;
+  }
+
+
+  .leaderboard-info div {
+    padding: 18px;
+  }
+
+}

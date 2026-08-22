@@ -1,0 +1,913 @@
+/* =========================
+   MAIN PAGE
+========================= */
+
+.dashboard-page {
+  min-height: 100vh;
+  background: #080909;
+  color: #f5f5f5;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.dashboard-header {
+  height: 72px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #202020;
+}
+
+.dashboard-logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.dashboard-logo span {
+  margin-right: 8px;
+  color: #ffffff;
+}
+
+.dashboard-back-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #f5f5f5;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dashboard-back-btn:hover {
+  border-color: #777;
+}
+
+
+/* =========================
+   HACKER PERFORMANCE
+========================= */
+
+.hacker-dashboard {
+  padding: 75px 7% 70px;
+  border-bottom: 1px solid #202020;
+}
+
+.hacker-dashboard > h1 {
+  font-size: 56px;
+  line-height: 1;
+  margin: 0 0 20px;
+  font-weight: 800;
+}
+
+.hacker-dashboard > h1 span {
+  color: #777;
+}
+
+.hacker-dashboard > p {
+  color: #999;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 0 45px;
+}
+
+
+/* =========================
+   HACKER STATS
+========================= */
+
+.hacker-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 55px;
+}
+
+.hacker-stat {
+  position: relative;
+  background: #0d0e0e;
+  border: 1px solid #242424;
+  padding: 26px;
+  min-height: 120px;
+  transition: 0.2s;
+}
+
+.hacker-stat:hover {
+  border-color: #444;
+  transform: translateY(-2px);
+}
+
+.hacker-stat small {
+  display: block;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+
+.hacker-stat strong {
+  display: inline-block;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.hacker-stat span {
+  margin-left: 7px;
+  color: #777;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+
+/* =========================
+   RECENT SUBMISSIONS
+========================= */
+
+.recent-submissions {
+  margin-top: 10px;
+}
+
+.recent-submissions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.recent-submissions-header h2 {
+  margin: 0 0 7px;
+  font-size: 28px;
+}
+
+.recent-submissions-header p {
+  margin: 0;
+  color: #777;
+}
+
+.recent-submission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* =========================
+   RECENT SUBMISSION CARD
+========================= */
+
+.recent-submission-card {
+  display: grid;
+  grid-template-columns: 44px 1fr auto auto;
+  align-items: center;
+  gap: 20px;
+  background: #0d0e0e;
+  border: 1px solid #242424;
+  padding: 20px 22px;
+  transition: 0.2s;
+}
+
+.recent-submission-card:hover {
+  border-color: #444;
+}
+
+.recent-submission-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #333;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.recent-submission-main {
+  min-width: 0;
+}
+
+.recent-submission-main h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.recent-submission-main p {
+  margin: 0;
+  color: #666;
+  font-size: 12px;
+}
+
+.recent-submission-status {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  padding: 7px 11px;
+  border: 1px solid #333;
+  text-transform: uppercase;
+}
+
+.recent-submission-status.correct {
+  color: #f5f5f5;
+  border-color: #555;
+}
+
+.recent-submission-status.incorrect {
+  color: #777;
+  border-color: #333;
+}
+
+.recent-submission-score {
+  min-width: 75px;
+  text-align: right;
+}
+
+.recent-submission-score small {
+  display: block;
+  color: #666;
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.recent-submission-score strong {
+  font-size: 15px;
+}
+
+
+/* =========================
+   NO RECENT SUBMISSIONS
+========================= */
+
+.recent-submissions-empty {
+  text-align: center;
+  border: 1px solid #242424;
+  background: #0d0e0e;
+  padding: 55px 30px;
+}
+
+.recent-submissions-empty > div {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.recent-submissions-empty h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.recent-submissions-empty p {
+  margin: 0;
+  color: #666;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.dashboard-hero {
+  padding: 80px 7% 50px;
+  max-width: 900px;
+}
+
+.dashboard-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.dashboard-hero h1 {
+  font-size: 56px;
+  line-height: 1;
+  margin: 0 0 20px;
+  font-weight: 800;
+}
+
+.dashboard-hero h1 span {
+  color: #777;
+}
+
+.dashboard-hero p {
+  color: #999;
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+
+/* =========================
+   CREATOR STATS
+========================= */
+
+.dashboard-stats {
+  padding: 0 7% 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dashboard-stat {
+  border: 1px solid #242424;
+  padding: 25px;
+  background: #0d0e0e;
+}
+
+.dashboard-stat small {
+  display: block;
+  color: #777;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.dashboard-stat strong {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.dashboard-content {
+  padding: 20px 7% 100px;
+}
+
+.dashboard-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.dashboard-title-row h2 {
+  margin: 0 0 7px;
+  font-size: 28px;
+}
+
+.dashboard-title-row p {
+  margin: 0;
+  color: #777;
+}
+
+.dashboard-explore-btn {
+  padding: 12px 20px;
+  background: transparent;
+  border: 1px solid #444;
+  color: white;
+  cursor: pointer;
+}
+
+.dashboard-explore-btn:hover {
+  border-color: #777;
+  background: #151616;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.dashboard-card {
+  background: #0d0e0e;
+  border: 1px solid #242424;
+  padding: 28px;
+  transition: 0.25s;
+}
+
+.dashboard-card:hover {
+  border-color: #444;
+  transform: translateY(-2px);
+}
+
+.dashboard-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-card-top span {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #aaa;
+}
+
+.dashboard-card-top small {
+  color: #777;
+  text-transform: uppercase;
+}
+
+.dashboard-card h3 {
+  font-size: 23px;
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.dashboard-card > p {
+  color: #888;
+  line-height: 1.6;
+  min-height: 52px;
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.dashboard-card-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  padding: 20px 0;
+  margin: 25px 0;
+}
+
+.dashboard-card-details small {
+  display: block;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+}
+
+.dashboard-card-details strong {
+  font-size: 15px;
+}
+
+
+/* =========================
+   CARD BUTTONS
+========================= */
+
+.dashboard-card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard-view-btn {
+  width: 100%;
+  padding: 13px;
+  background: #f5f5f5;
+  color: #080909;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dashboard-view-btn:hover {
+  background: #d8d8d8;
+}
+
+.dashboard-submissions-btn {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  color: #f5f5f5;
+  border: 1px solid #333;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dashboard-submissions-btn:hover {
+  border-color: #777;
+  background: #151616;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.dashboard-empty {
+  text-align: center;
+  border: 1px solid #242424;
+  padding: 80px 30px;
+  background: #0d0e0e;
+}
+
+.dashboard-empty > div {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.dashboard-empty h3 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.dashboard-empty p {
+  color: #777;
+  max-width: 500px;
+  margin: 0 auto 25px;
+  line-height: 1.6;
+}
+
+.dashboard-empty button {
+  padding: 13px 25px;
+  background: #f5f5f5;
+  color: #080909;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* =========================
+   SUBMISSION VIEW
+========================= */
+
+.submission-view {
+  padding: 70px 7% 100px;
+}
+
+.submission-view-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 45px;
+}
+
+.submission-view-header h1 {
+  font-size: 46px;
+  margin: 0 0 15px;
+  max-width: 750px;
+}
+
+.submission-view-header p {
+  color: #888;
+  font-size: 16px;
+  margin: 0;
+}
+
+.submission-count-large {
+  border: 1px solid #242424;
+  background: #0d0e0e;
+  padding: 22px 30px;
+  min-width: 130px;
+  text-align: center;
+}
+
+.submission-count-large span {
+  display: block;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.submission-count-large strong {
+  font-size: 32px;
+}
+
+
+/* =========================
+   SUBMISSION LIST
+========================= */
+
+.submission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.submission-card {
+  background: #0d0e0e;
+  border: 1px solid #242424;
+  padding: 30px;
+}
+
+.submission-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.submission-card-top small {
+  display: block;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.submission-card-top h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.submission-status {
+  border: 1px solid #444;
+  padding: 7px 12px;
+  color: #aaa;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submission-status.correct {
+  color: #f5f5f5;
+  border-color: #555;
+}
+
+.submission-status.incorrect {
+  color: #777;
+  border-color: #333;
+}
+
+.submission-date {
+  color: #666;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+
+/* =========================
+   SUBMISSION SCORE
+========================= */
+
+.submission-score-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  padding: 18px 0;
+  margin-top: 22px;
+}
+
+.submission-score-display small {
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+}
+
+.submission-score-display strong {
+  font-size: 18px;
+}
+
+
+/* =========================
+   SUBMISSION INFO
+========================= */
+
+.submission-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border-bottom: 1px solid #222;
+  padding: 22px 0;
+  margin: 0 0 25px;
+}
+
+.submission-info-grid small,
+.submission-description small {
+  display: block;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  margin-bottom: 8px;
+}
+
+.submission-info-grid p {
+  color: #aaa;
+  margin: 0;
+  word-break: break-word;
+}
+
+.submission-info-grid a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.submission-info-grid a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.submission-description {
+  margin-bottom: 25px;
+}
+
+.submission-description p {
+  color: #999;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+
+/* =========================
+   SUBMISSION ACTION
+========================= */
+
+.submission-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submission-review-btn {
+  padding: 12px 20px;
+  background: transparent;
+  border: 1px solid #444;
+  color: #f5f5f5;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submission-review-btn:hover {
+  background: #151616;
+  border-color: #777;
+}
+
+
+/* =========================
+   NO SUBMISSIONS
+========================= */
+
+.submission-empty {
+  text-align: center;
+  border: 1px solid #242424;
+  background: #0d0e0e;
+  padding: 90px 30px;
+}
+
+.submission-empty > div {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.submission-empty h2 {
+  margin: 0 0 10px;
+}
+
+.submission-empty p {
+  color: #777;
+  margin: 0;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+  .hacker-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recent-submission-card {
+    grid-template-columns: 44px 1fr auto;
+  }
+
+  .recent-submission-score {
+    grid-column: 2 / -1;
+    text-align: left;
+    margin-top: -8px;
+  }
+
+}
+
+
+@media (max-width: 800px) {
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hacker-dashboard > h1 {
+    font-size: 42px;
+  }
+
+  .dashboard-hero h1 {
+    font-size: 42px;
+  }
+
+  .hacker-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .submission-view-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .submission-view-header h1 {
+    font-size: 36px;
+  }
+
+  .submission-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .hacker-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-submission-card {
+    grid-template-columns: 40px 1fr;
+    gap: 15px;
+  }
+
+  .recent-submission-status {
+    grid-column: 2;
+    width: fit-content;
+  }
+
+  .recent-submission-score {
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .dashboard-header {
+    padding: 0 5%;
+  }
+
+  .hacker-dashboard,
+  .dashboard-hero,
+  .dashboard-content,
+  .dashboard-stats,
+  .submission-view {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .hacker-dashboard {
+    padding-top: 55px;
+  }
+
+  .hacker-dashboard > h1 {
+    font-size: 38px;
+  }
+
+  .dashboard-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .dashboard-card-details {
+    grid-template-columns: 1fr;
+  }
+
+  .submission-card {
+    padding: 22px;
+  }
+
+  .submission-card-top {
+    flex-direction: column;
+  }
+
+  .submission-view-header h1 {
+    font-size: 30px;
+  }
+
+  .recent-submission-card {
+    padding: 17px;
+  }
+
+}

@@ -1,0 +1,712 @@
+ /* =========================
+   PAGE
+========================= */
+
+.bounty-page {
+  min-height: 100vh;
+  background: #080909;
+  color: #f5f5f5;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.bounty-header {
+  height: 72px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1c1c1c;
+}
+
+.bounty-logo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.bounty-logo span {
+  color: #00ff88;
+}
+
+.back-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #aaa;
+  padding: 9px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  border-color: #00ff88;
+  color: #00ff88;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.bounty-details {
+  width: 86%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 65px 0 100px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr) 320px;
+
+  gap: 70px;
+}
+
+
+/* =========================
+   TOP ROW
+========================= */
+
+.bounty-top-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.bounty-label {
+  color: #00ff88;
+
+  font-size: 11px;
+
+  letter-spacing: 1.5px;
+}
+
+
+/* =========================
+   STATUS BADGE
+========================= */
+
+.bounty-status {
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  border: 1px solid;
+
+  text-transform: uppercase;
+}
+
+
+/* OPEN */
+
+.status-open {
+  color: #00ff88;
+
+  border-color: #00ff88;
+
+  background: rgba(0, 255, 136, 0.08);
+}
+
+
+/* UNDER REVIEW */
+
+.status-under-review {
+  color: #ffc857;
+
+  border-color: #ffc857;
+
+  background: rgba(255, 200, 87, 0.08);
+}
+
+
+/* AWARDED */
+
+.status-awarded {
+  color: #5da9ff;
+
+  border-color: #5da9ff;
+
+  background: rgba(93, 169, 255, 0.08);
+}
+
+
+/* CLOSED */
+
+.status-closed {
+  color: #777;
+
+  border-color: #444;
+
+  background: rgba(100, 100, 100, 0.08);
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.bounty-main h1 {
+  font-size: 48px;
+
+  line-height: 1.1;
+
+  margin: 0 0 15px;
+}
+
+.bounty-company {
+  color: #777;
+
+  font-size: 14px;
+}
+
+.bounty-company strong {
+  color: #00ff88;
+}
+
+
+/* =========================
+   TAGS
+========================= */
+
+.bounty-tags {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 25px;
+
+  flex-wrap: wrap;
+}
+
+.bounty-tags span {
+  background: #151616;
+
+  border: 1px solid #292929;
+
+  color: #aaa;
+
+  padding: 7px 12px;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.details-section {
+  margin-top: 55px;
+}
+
+.details-section h2 {
+  font-size: 22px;
+
+  margin-bottom: 18px;
+}
+
+.details-section p {
+  color: #777;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  max-width: 720px;
+}
+
+.details-section ul {
+  padding-left: 20px;
+
+  color: #777;
+
+  line-height: 2;
+}
+
+.details-section li {
+  padding-left: 5px;
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.skills span {
+  background: #111;
+
+  border: 1px solid #292929;
+
+  padding: 8px 12px;
+
+  border-radius: 5px;
+
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   STATUS MANAGEMENT
+========================= */
+
+.status-management {
+  background: #0d0e0e;
+
+  border: 1px solid #242424;
+
+  border-radius: 9px;
+
+  padding: 25px;
+
+  max-width: 720px;
+}
+
+.status-management h2 {
+  margin-top: 0;
+
+  margin-bottom: 10px;
+}
+
+.status-management p {
+  margin-bottom: 20px;
+}
+
+
+/* STATUS BUTTONS */
+
+.status-buttons {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.status-buttons button {
+  background: #111313;
+
+  border: 1px solid #292929;
+
+  color: #888;
+
+  padding: 9px 15px;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  transition: 0.2s;
+}
+
+.status-buttons button:hover {
+  border-color: #00ff88;
+
+  color: #00ff88;
+}
+
+
+/* ACTIVE STATUS */
+
+.status-buttons button.active-status {
+  background: #00ff88;
+
+  border-color: #00ff88;
+
+  color: #050505;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.bounty-sidebar {
+  position: sticky;
+
+  top: 30px;
+
+  height: fit-content;
+}
+
+
+/* =========================
+   REWARD
+========================= */
+
+.reward-box {
+  background: #101111;
+
+  border: 1px solid #242424;
+
+  border-radius: 9px;
+
+  padding: 25px;
+}
+
+.reward-box small {
+  display: block;
+
+  color: #555;
+
+  letter-spacing: 1.5px;
+
+  font-size: 10px;
+
+  margin-bottom: 10px;
+}
+
+.reward-box strong {
+  display: block;
+
+  color: #00ff88;
+
+  font-size: 35px;
+
+  margin-bottom: 5px;
+}
+
+.reward-box p {
+  color: #555;
+
+  font-size: 12px;
+
+  margin: 0;
+}
+
+
+/* =========================
+   SIDEBAR STATUS
+========================= */
+
+.status-card {
+  background: #101111;
+
+  border: 1px solid #242424;
+
+  border-radius: 9px;
+
+  padding: 20px 25px;
+
+  margin-top: 15px;
+}
+
+.status-card span {
+  display: block;
+
+  color: #555;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  margin-bottom: 8px;
+}
+
+.status-card strong {
+  color: #00ff88;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.info-box {
+  background: #101111;
+
+  border: 1px solid #242424;
+
+  border-radius: 9px;
+
+  margin-top: 15px;
+}
+
+.info-box div {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 17px 20px;
+
+  border-bottom: 1px solid #202020;
+}
+
+.info-box div:last-child {
+  border-bottom: none;
+}
+
+.info-box span {
+  color: #555;
+
+  font-size: 12px;
+}
+
+.info-box strong {
+  color: #ddd;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+.submit-btn {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 16px;
+
+  background: #00ff88;
+
+  color: #050505;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.submit-btn:hover {
+  background: #18ff98;
+
+  transform: translateY(-2px);
+}
+
+
+/* DISABLED SUBMIT */
+
+.submit-btn:disabled {
+  background: #242424;
+
+  color: #555;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+.submit-btn:disabled:hover {
+  background: #242424;
+
+  transform: none;
+}
+
+.submit-note {
+  text-align: center;
+
+  color: #444;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  margin-top: 12px;
+}
+
+
+/* =========================
+   NOT FOUND
+========================= */
+
+.bounty-not-found {
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.bounty-not-found button {
+  background: #00ff88;
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+/* =========================
+   DELETE CHALLENGE
+========================= */
+
+.delete-section {
+
+  border: 1px solid #3a1f1f;
+
+  background: #120d0d;
+
+  border-radius: 9px;
+
+  padding: 25px;
+
+  max-width: 720px;
+
+}
+
+
+.delete-section h2 {
+
+  margin-top: 0;
+
+  color: #ff5a5a;
+
+}
+
+
+.delete-section p {
+
+  color: #888;
+
+  margin-bottom: 20px;
+
+}
+
+
+.delete-challenge-btn {
+
+  background: transparent;
+
+  border: 1px solid #ff4d4d;
+
+  color: #ff5a5a;
+
+  padding: 12px 18px;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+}
+
+
+.delete-challenge-btn:hover {
+
+  background: #ff4d4d;
+
+  color: white;
+
+  transform: translateY(-2px);
+
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+  .bounty-details {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .bounty-sidebar {
+    position: static;
+  }
+
+  .bounty-main h1 {
+    font-size: 38px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .bounty-header {
+    padding: 0 5%;
+  }
+
+  .bounty-details {
+    width: 90%;
+
+    padding-top: 45px;
+  }
+
+  .bounty-main h1 {
+    font-size: 32px;
+  }
+
+  .reward-box strong {
+    font-size: 30px;
+  }
+
+  .bounty-top-row {
+    gap: 10px;
+  }
+
+  .status-buttons {
+    flex-direction: column;
+  }
+
+  .status-buttons button {
+    width: 100%;
+  }
+
+}

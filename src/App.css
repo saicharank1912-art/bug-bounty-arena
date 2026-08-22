@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  background: #0d1117;
+  color: white;
+}
+
+nav {
+  height: 70px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #30363d;
+}
+
+nav h2 {
+  color: #58a6ff;
+}
+
+nav span {
+  color: #8b949e;
+}
+
+.hero {
+  max-width: 1000px;
+  margin: auto;
+  padding: 100px 30px;
+  text-align: center;
+}
+
+.tag {
+  color: #58a6ff;
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  line-height: 1.1;
+  margin-bottom: 25px;
+}
+
+.description {
+  max-width: 650px;
+  margin: auto;
+  color: #8b949e;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+button {
+  margin-top: 35px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  background: #238636;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2ea043;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 80px;
+}
+
+.features div {
+  width: 220px;
+  padding: 25px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+}
+
+.features h3 {
+  margin-bottom: 10px;
+}
+
+.features p {
+  color: #8b949e;
+}
+
+@media (max-width: 700px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+}
