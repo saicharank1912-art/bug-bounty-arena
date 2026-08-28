@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./post.css";
+import { supabase } from "./supabase";
 
 function Post({
   onBack,
@@ -30,6 +31,8 @@ function Post({
   const [submitted, setSubmitted] =
     useState(false);
 
+  const [saving, setSaving] =
+    useState(false);
 
   /* =========================
      HANDLE NORMAL INPUT
@@ -43,7 +46,6 @@ function Post({
       [name]: value,
     }));
   };
-
 
   /* =========================
      HANDLE TEST CASE INPUT
@@ -76,7 +78,6 @@ function Post({
     });
   };
 
-
   /* =========================
      ADD TEST CASE
   ========================= */
@@ -95,7 +96,6 @@ function Post({
       ],
     }));
   };
-
 
   /* =========================
      REMOVE TEST CASE
@@ -120,12 +120,11 @@ function Post({
     });
   };
 
-
   /* =========================
      CREATE BOUNTY
   ========================= */
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validTestCases =
@@ -143,10 +142,13 @@ function Post({
       return;
     }
 
+    setSaving(true);
 
-    const newBounty = {
-      id: `bounty-${Date.now()}`,
+    /* =========================
+       PREPARE SUPABASE DATA
+    ========================= */
 
+    const bountyForDatabase = {
       title:
         formData.title.trim(),
 
@@ -159,16 +161,16 @@ function Post({
       difficulty:
         formData.difficulty,
 
-      timeLimit:
+      time_limit:
         Number(formData.timeLimit) || 30,
 
       reward:
         Number(formData.reward) || 0,
 
-      buggyCode:
+      buggy_code:
         formData.buggyCode,
 
-      testCases:
+      test_cases:
         validTestCases.map(
           (testCase) => ({
             input:
@@ -181,11 +183,80 @@ function Post({
 
       hint:
         formData.hint.trim(),
+    };
+
+    /* =========================
+       SAVE TO SUPABASE
+    ========================= */
+
+    const {
+      data,
+      error,
+    } = await supabase
+      .from("bounties")
+      .insert([bountyForDatabase])
+      .select()
+      .single();
+
+    if (error) {
+      console.error(
+        "Supabase bounty error:",
+        error
+      );
+
+      alert(
+        `Failed to create challenge.\n\n${error.message}`
+      );
+
+      setSaving(false);
+
+      return;
+    }
+
+    console.log(
+      "Bounty saved to Supabase:",
+      data
+    );
+
+    /* =========================
+       CREATE APP-FRIENDLY BOUNTY
+    ========================= */
+
+    const newBounty = {
+      id:
+        data.id,
+
+      title:
+        data.title,
+
+      description:
+        data.description,
+
+      category:
+        data.category,
+
+      difficulty:
+        data.difficulty,
+
+      timeLimit:
+        data.time_limit,
+
+      reward:
+        data.reward,
+
+      buggyCode:
+        data.buggy_code,
+
+      testCases:
+        data.test_cases || [],
+
+      hint:
+        data.hint || "",
 
       severity:
-        formData.difficulty === "Hard"
+        data.difficulty === "Hard"
           ? "High"
-          : formData.difficulty === "Medium"
+          : data.difficulty === "Medium"
           ? "Medium"
           : "Low",
 
@@ -199,23 +270,22 @@ function Post({
         "New",
 
       time:
-        `${formData.timeLimit} min`,
+        `${data.time_limit} min`,
 
       tag:
         "CODE CHALLENGE",
 
       createdAt:
-        new Date().toISOString(),
+        data.created_at,
 
       tags: [
-        formData.category,
-        formData.difficulty,
+        data.category,
+        data.difficulty,
       ],
     };
 
-
     /* =========================
-       SAVE THROUGH APP
+       UPDATE APP STATE
     ========================= */
 
     if (
@@ -223,61 +293,17 @@ function Post({
       "function"
     ) {
       onCreateBounty(newBounty);
-
-    } else {
-
-      try {
-        const saved =
-          localStorage.getItem(
-            "bounties"
-          );
-
-        let existing = [];
-
-        if (saved) {
-          const parsed =
-            JSON.parse(saved);
-
-          if (
-            Array.isArray(parsed)
-          ) {
-            existing = parsed;
-          }
-        }
-
-        const updated = [
-          newBounty,
-          ...existing,
-        ];
-
-        localStorage.setItem(
-          "bounties",
-          JSON.stringify(updated)
-        );
-
-        window.dispatchEvent(
-          new Event(
-            "bountiesUpdated"
-          )
-        );
-
-      } catch (error) {
-        console.error(
-          "Error saving bounty:",
-          error
-        );
-      }
     }
-
 
     console.log(
       "New Challenge Created:",
       newBounty
     );
 
+    setSaving(false);
+
     setSubmitted(true);
   };
-
 
   /* =========================
      CREATE ANOTHER
@@ -290,7 +316,6 @@ function Post({
       getInitialFormData()
     );
   };
-
 
   /* =========================
      EXPLORE BUTTON
@@ -311,7 +336,6 @@ function Post({
       )
     );
   };
-
 
   /* =========================
      SUCCESS SCREEN
@@ -364,7 +388,6 @@ function Post({
     );
   }
 
-
   /* =========================
      CREATE CHALLENGE FORM
   ========================= */
@@ -383,7 +406,6 @@ function Post({
         >
           ← BACK TO HOME
         </button>
-
 
         {/* HEADER */}
 
@@ -406,7 +428,6 @@ function Post({
           </p>
 
         </div>
-
 
         {/* FORM */}
 
@@ -434,7 +455,6 @@ function Post({
 
           </div>
 
-
           {/* DESCRIPTION */}
 
           <div className="form-group">
@@ -452,7 +472,6 @@ function Post({
             />
 
           </div>
-
 
           {/* CATEGORY + DIFFICULTY */}
 
@@ -480,7 +499,6 @@ function Post({
               </select>
 
             </div>
-
 
             <div className="form-group">
 
@@ -511,7 +529,6 @@ function Post({
 
           </div>
 
-
           {/* TIME LIMIT */}
 
           <div className="form-group">
@@ -531,7 +548,6 @@ function Post({
             />
 
           </div>
-
 
           {/* BUGGY CODE */}
 
@@ -561,10 +577,7 @@ function Post({
 
           </div>
 
-
-          {/* =========================
-              TEST CASES
-          ========================= */}
+          {/* TEST CASES */}
 
           <div className="test-cases-section">
 
@@ -583,7 +596,6 @@ function Post({
               </button>
 
             </div>
-
 
             {formData.testCases.map(
               (testCase, index) => (
@@ -615,7 +627,6 @@ function Post({
 
                   </div>
 
-
                   <div className="form-row">
 
                     <div className="form-group">
@@ -639,7 +650,6 @@ function Post({
                       />
 
                     </div>
-
 
                     <div className="form-group">
 
@@ -674,7 +684,6 @@ function Post({
 
           </div>
 
-
           {/* HINT */}
 
           <div className="form-group">
@@ -691,7 +700,6 @@ function Post({
             />
 
           </div>
-
 
           {/* REWARD */}
 
@@ -721,14 +729,16 @@ function Post({
 
           </div>
 
-
           {/* SUBMIT */}
 
           <button
             type="submit"
             className="post-bounty-btn"
+            disabled={saving}
           >
-            CREATE CHALLENGE →
+            {saving
+              ? "CREATING CHALLENGE..."
+              : "CREATE CHALLENGE →"}
           </button>
 
         </form>

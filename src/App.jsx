@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { supabase } from "./supabase";
 
 import Loading from "./loading";
 import Landing from "./landing";
@@ -25,49 +26,137 @@ function App() {
   const [selectedBounty, setSelectedBounty] =
     useState(null);
 
+  const [bounties, setBounties] =
+    useState([]);
+
 
   /* =========================
-     LOAD BOUNTIES
+     LOAD BOUNTIES FROM SUPABASE
   ========================= */
 
-  const [bounties, setBounties] = useState(
-    () => {
+  useEffect(() => {
+
+    const loadBounties = async () => {
 
       try {
 
-        const saved =
-          localStorage.getItem(
-            "bounties"
+        const {
+          data,
+          error,
+        } = await supabase
+          .from("bounties")
+          .select("*")
+          .order("created_at", {
+            ascending: false,
+          });
+
+        if (error) {
+
+          console.error(
+            "Error loading bounties from Supabase:",
+            error
           );
 
-        if (saved) {
-
-          const parsed =
-            JSON.parse(saved);
-
-          if (
-            Array.isArray(parsed)
-          ) {
-
-            return parsed;
-
-          }
-
+          return;
         }
+
+
+        /*
+          Convert Supabase database
+          format into the format
+          your existing app uses.
+        */
+
+        const formattedBounties =
+          (data || []).map((bounty) => ({
+
+            id:
+              bounty.id,
+
+            title:
+              bounty.title,
+
+            description:
+              bounty.description,
+
+            category:
+              bounty.category,
+
+            difficulty:
+              bounty.difficulty,
+
+            timeLimit:
+              bounty.time_limit,
+
+            reward:
+              bounty.reward,
+
+            buggyCode:
+              bounty.buggy_code,
+
+            testCases:
+              bounty.test_cases || [],
+
+            hint:
+              bounty.hint || "",
+
+            severity:
+              bounty.difficulty === "Hard"
+                ? "High"
+                : bounty.difficulty === "Medium"
+                ? "Medium"
+                : "Low",
+
+            company:
+              "Community",
+
+            status:
+              "Open",
+
+            deadline:
+              "New",
+
+            time:
+              `${bounty.time_limit} min`,
+
+            tag:
+              "CODE CHALLENGE",
+
+            createdAt:
+              bounty.created_at,
+
+            tags: [
+              bounty.category,
+              bounty.difficulty,
+            ],
+
+          }));
+
+
+        setBounties(
+          formattedBounties
+        );
+
+        console.log(
+          "Global bounties loaded:",
+          formattedBounties
+        );
 
       } catch (error) {
 
         console.error(
-          "Error loading bounties:",
+          "Unexpected error loading bounties:",
           error
         );
 
       }
 
-      return [];
+    };
 
-    }
-  );
+
+    loadBounties();
+
+  }, []);
 
 
   /* =========================
@@ -87,120 +176,6 @@ function App() {
     return () => {
 
       clearTimeout(timer);
-
-    };
-
-  }, []);
-
-
-  /* =========================
-     SAVE BOUNTIES
-  ========================= */
-
-  useEffect(() => {
-
-    try {
-
-      localStorage.setItem(
-        "bounties",
-        JSON.stringify(bounties)
-      );
-
-    } catch (error) {
-
-      console.error(
-        "Error saving bounties:",
-        error
-      );
-
-    }
-
-  }, [bounties]);
-
-
-  /* =========================
-     LISTEN FOR BOUNTY UPDATES
-  ========================= */
-
-  useEffect(() => {
-
-    const handleBountyUpdate = () => {
-
-      try {
-
-        const saved =
-          localStorage.getItem(
-            "bounties"
-          );
-
-        if (!saved) {
-
-          setBounties([]);
-
-          return;
-
-        }
-
-        const parsed =
-          JSON.parse(saved);
-
-        if (
-          Array.isArray(parsed)
-        ) {
-
-          setBounties(parsed);
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Error refreshing bounties:",
-          error
-        );
-
-      }
-
-    };
-
-
-    const handleStorageChange = (
-      event
-    ) => {
-
-      if (
-        event.key === "bounties"
-      ) {
-
-        handleBountyUpdate();
-
-      }
-
-    };
-
-
-    window.addEventListener(
-      "bountiesUpdated",
-      handleBountyUpdate
-    );
-
-    window.addEventListener(
-      "storage",
-      handleStorageChange
-    );
-
-
-    return () => {
-
-      window.removeEventListener(
-        "bountiesUpdated",
-        handleBountyUpdate
-      );
-
-      window.removeEventListener(
-        "storage",
-        handleStorageChange
-      );
 
     };
 
@@ -385,6 +360,17 @@ function App() {
     };
 
 
+    /*
+      Supabase already contains
+      this bounty because Post.jsx
+      inserted it.
+
+      We only update the local
+      React state here so the
+      challenge appears immediately
+      without refreshing.
+    */
+
     setBounties(
       (previousBounties) => {
 
@@ -427,6 +413,16 @@ function App() {
     bountyId,
     newStatus
   ) => {
+
+    /*
+      For now this keeps the existing
+      local app behavior.
+
+      We are not changing the database
+      schema for status yet because
+      your current Supabase table does
+      not have a status column.
+    */
 
     setBounties(
       (previousBounties) => {
@@ -489,7 +485,7 @@ function App() {
      DELETE BOUNTY
   ========================= */
 
-  const handleDeleteBounty = (
+  const handleDeleteBounty = async (
     bountyId
   ) => {
 
@@ -503,69 +499,69 @@ function App() {
     }
 
 
-    /*
-      Create the new list immediately
-      from the current state.
-    */
-
-    const updatedBounties =
-      bounties.filter(
-        (bounty) =>
-          String(bounty.id) !==
-          String(bountyId)
-      );
-
-
-    /*
-      Update React state.
-    */
-
-    setBounties(
-      updatedBounties
-    );
-
-
-    /*
-      Save the exact same list.
-    */
-
     try {
 
-      localStorage.setItem(
-        "bounties",
-        JSON.stringify(
-          updatedBounties
-        )
+      /*
+        Delete from Supabase so
+        the challenge disappears
+        globally.
+      */
+
+      const {
+        error,
+      } = await supabase
+        .from("bounties")
+        .delete()
+        .eq("id", bountyId);
+
+
+      if (error) {
+
+        console.error(
+          "Error deleting bounty from Supabase:",
+          error
+        );
+
+        alert(
+          `Failed to delete challenge.\n\n${error.message}`
+        );
+
+        return;
+      }
+
+
+      /*
+        Update React state.
+      */
+
+      setBounties(
+        (previousBounties) =>
+          previousBounties.filter(
+            (bounty) =>
+              String(bounty.id) !==
+              String(bountyId)
+          )
       );
+
+
+      setSelectedBounty(null);
+
+      setPage("explore");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
 
     } catch (error) {
 
       console.error(
-        "Error deleting bounty:",
+        "Unexpected delete error:",
         error
       );
 
     }
-
-
-    /*
-      Clear selected challenge.
-    */
-
-    setSelectedBounty(null);
-
-
-    /*
-      Go back to Explore.
-    */
-
-    setPage("explore");
-
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
 
   };
 

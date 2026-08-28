@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./explore.css";
 
 function Explore({
@@ -7,255 +7,373 @@ function Explore({
   onBack,
 }) {
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
-  const [severity, setSeverity] = useState("All");
-  const [sort, setSort] = useState("Newest");
+  const [category, setCategory] =
+    useState("All");
 
-  const [storedBounties, setStoredBounties] =
-    useState([]);
+  const [severity, setSeverity] =
+    useState("All");
 
-  /* =========================
-     LOAD BOUNTIES FROM STORAGE
-  ========================= */
-
-  const loadStoredBounties = () => {
-    try {
-      const saved =
-        localStorage.getItem("bounties");
-
-      if (!saved) {
-        setStoredBounties([]);
-        return;
-      }
-
-      const parsed = JSON.parse(saved);
-
-      if (Array.isArray(parsed)) {
-        setStoredBounties(parsed);
-      } else {
-        setStoredBounties([]);
-      }
-    } catch (error) {
-      console.error(
-        "Error loading bounties in Explore:",
-        error
-      );
-
-      setStoredBounties([]);
-    }
-  };
-
-  /* =========================
-     INITIAL LOAD
-  ========================= */
-
-  useEffect(() => {
-    loadStoredBounties();
-
-    const handleStorageChange = () => {
-      loadStoredBounties();
-    };
-
-    window.addEventListener(
-      "storage",
-      handleStorageChange
-    );
-
-    /*
-      Custom event for updates made
-      inside the same browser tab.
-    */
-
-    const handleBountyUpdate = () => {
-      loadStoredBounties();
-    };
-
-    window.addEventListener(
-      "bountiesUpdated",
-      handleBountyUpdate
-    );
-
-    /*
-      Small refresh interval ensures
-      newly-created bounties appear
-      even if another component
-      updates localStorage.
-    */
-
-    const interval = setInterval(
-      loadStoredBounties,
-      1000
-    );
-
-    return () => {
-      window.removeEventListener(
-        "storage",
-        handleStorageChange
-      );
-
-      window.removeEventListener(
-        "bountiesUpdated",
-        handleBountyUpdate
-      );
-
-      clearInterval(interval);
-    };
-  }, []);
+  const [sort, setSort] =
+    useState("Newest");
 
   /* =========================
      SAMPLE BOUNTIES
+     These are only for initial
+     website appearance.
   ========================= */
 
   const sampleBounties = [
     {
       id: "sample-1",
+
       title:
-        "Authentication Bypass in Login System",
-      company: "SecureCore",
+        "Fix the Broken Login Function",
+
+      company:
+        "Bug Bounty Arena",
+
       description:
-        "Find vulnerabilities that allow users to bypass the authentication mechanism.",
-      reward: 500,
-      category: "Web Security",
-      severity: "High",
-      status: "Open",
-      deadline: "7 days left",
+        "A JavaScript login validation function contains a logical bug. Find and fix it.",
+
+      reward:
+        500,
+
+      category:
+        "Web Development",
+
+      difficulty:
+        "Easy",
+
+      severity:
+        "Low",
+
+      status:
+        "Open",
+
+      deadline:
+        "New",
+
       createdAt:
         "2026-08-20T10:00:00",
+
       tags: [
-        "Authentication",
-        "Web",
+        "JavaScript",
+        "Login",
       ],
+
+      buggyCode: `function login(username, password) {
+  if (username === "admin" &&
+      password !== "1234") {
+    return "Login successful";
+  }
+
+  return "Invalid credentials";
+}`,
+
+      testCases: [
+        {
+          input: `"admin", "1234"`,
+
+          expectedOutput:
+            "Login successful",
+        },
+      ],
+
+      hint:
+        "Check the password comparison operator.",
     },
 
     {
       id: "sample-2",
+
       title:
-        "XSS Vulnerability Detection",
-      company: "CyberLabs",
+        "Fix the Binary Search",
+
+      company:
+        "Bug Bounty Arena",
+
       description:
-        "Identify potential stored or reflected XSS vulnerabilities in the application.",
-      reward: 300,
-      category: "Web Security",
-      severity: "Medium",
-      status: "Open",
-      deadline: "12 days left",
+        "The binary search algorithm is not returning the correct index for some values.",
+
+      reward:
+        750,
+
+      category:
+        "DSA",
+
+      difficulty:
+        "Medium",
+
+      severity:
+        "Medium",
+
+      status:
+        "Open",
+
+      deadline:
+        "New",
+
       createdAt:
         "2026-08-19T10:00:00",
+
       tags: [
-        "XSS",
-        "Web",
+        "JavaScript",
+        "Algorithms",
       ],
+
+      buggyCode: `function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    const mid =
+      Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) {
+      return mid;
+    }
+
+    if (arr[mid] < target) {
+      right = mid - 1;
+    } else {
+      left = mid + 1;
+    }
+  }
+
+  return -1;
+}`,
+
+      testCases: [
+        {
+          input:
+            `[1, 2, 3, 4, 5], 4`,
+
+          expectedOutput:
+            "3",
+        },
+      ],
+
+      hint:
+        "Check how the left and right boundaries move.",
     },
 
     {
       id: "sample-3",
+
       title:
-        "API Authorization Bug",
-      company: "DataShield",
+        "Repair Array Sum Function",
+
+      company:
+        "Bug Bounty Arena",
+
       description:
-        "Find an authorization vulnerability that allows unauthorized access to API resources.",
-      reward: 750,
-      category: "API Security",
-      severity: "Critical",
-      status: "Open",
-      deadline: "5 days left",
+        "Fix the JavaScript function so it correctly calculates the sum of all array elements.",
+
+      reward:
+        300,
+
+      category:
+        "DSA",
+
+      difficulty:
+        "Easy",
+
+      severity:
+        "Low",
+
+      status:
+        "Open",
+
+      deadline:
+        "New",
+
       createdAt:
         "2026-08-18T10:00:00",
+
       tags: [
-        "API",
-        "Authorization",
+        "Arrays",
+        "JavaScript",
       ],
+
+      buggyCode: `function arraySum(arr) {
+  let sum = 0;
+
+  for (
+    let i = 0;
+    i <= arr.length;
+    i++
+  ) {
+    sum += arr[i];
+  }
+
+  return sum;
+}`,
+
+      testCases: [
+        {
+          input:
+            `[1, 2, 3]`,
+
+          expectedOutput:
+            "6",
+        },
+      ],
+
+      hint:
+        "Check the loop condition.",
     },
 
     {
       id: "sample-4",
+
       title:
-        "Mobile Authentication Weakness",
-      company: "AppSecure",
+        "Fix the String Reversal",
+
+      company:
+        "Bug Bounty Arena",
+
       description:
-        "Analyze the mobile application and identify weaknesses in its authentication system.",
-      reward: 600,
-      category: "Mobile Security",
-      severity: "High",
-      status: "Open",
-      deadline: "15 days left",
+        "This function is supposed to reverse a string but contains a bug.",
+
+      reward:
+        600,
+
+      category:
+        "Web Development",
+
+      difficulty:
+        "Medium",
+
+      severity:
+        "Medium",
+
+      status:
+        "Open",
+
+      deadline:
+        "New",
+
       createdAt:
         "2026-08-17T10:00:00",
+
       tags: [
-        "Mobile",
-        "Authentication",
+        "Strings",
+        "JavaScript",
       ],
+
+      buggyCode: `function reverseString(str) {
+  let result = "";
+
+  for (
+    let i = 0;
+    i < str.length;
+    i++
+  ) {
+    result += str[i];
+  }
+
+  return result;
+}`,
+
+      testCases: [
+        {
+          input:
+            `"hello"`,
+
+          expectedOutput:
+            "olleh",
+        },
+      ],
+
+      hint:
+        "Think about the direction of the loop.",
     },
   ];
 
   /* =========================
-     COMBINE BOUNTIES
+     COMBINE SAMPLE + SUPABASE
   ========================= */
-
-  /*
-    App.jsx bounties and localStorage
-    bounties may contain the same items.
-
-    Use a Map so duplicates don't
-    appear in Explore.
-  */
 
   const bountyMap = new Map();
 
-  [...sampleBounties, ...storedBounties, ...bounties]
-    .forEach((bounty) => {
-      if (!bounty) return;
+  [
+    ...sampleBounties,
+    ...bounties,
+  ].forEach((bounty) => {
+    if (!bounty) {
+      return;
+    }
 
-      const id =
-        bounty.id ??
-        bounty.title;
+    const id =
+      bounty.id ||
+      bounty.title;
 
-      bountyMap.set(String(id), bounty);
-    });
+    bountyMap.set(
+      String(id),
+      bounty
+    );
+  });
 
   const allBounties =
-    Array.from(bountyMap.values());
+    Array.from(
+      bountyMap.values()
+    );
 
   /* =========================
      FILTER
   ========================= */
 
   let filteredBounties =
-    allBounties.filter((bounty) => {
-      const title = String(
-        bounty.title || ""
-      ).toLowerCase();
+    allBounties.filter(
+      (bounty) => {
+        const title =
+          String(
+            bounty.title || ""
+          ).toLowerCase();
 
-      const description = String(
-        bounty.description || ""
-      ).toLowerCase();
+        const description =
+          String(
+            bounty.description || ""
+          ).toLowerCase();
 
-      const company = String(
-        bounty.company || ""
-      ).toLowerCase();
+        const company =
+          String(
+            bounty.company || ""
+          ).toLowerCase();
 
-      const searchText =
-        search.toLowerCase().trim();
+        const searchText =
+          search
+            .toLowerCase()
+            .trim();
 
-      const matchesSearch =
-        title.includes(searchText) ||
-        description.includes(searchText) ||
-        company.includes(searchText);
+        const matchesSearch =
+          title.includes(
+            searchText
+          ) ||
+          description.includes(
+            searchText
+          ) ||
+          company.includes(
+            searchText
+          );
 
-      const matchesCategory =
-        category === "All" ||
-        bounty.category === category;
+        const matchesCategory =
+          category === "All" ||
+          bounty.category ===
+            category;
 
-      const matchesSeverity =
-        severity === "All" ||
-        bounty.severity === severity;
+        const matchesSeverity =
+          severity === "All" ||
+          bounty.severity ===
+            severity;
 
-      return (
-        matchesSearch &&
-        matchesCategory &&
-        matchesSeverity
-      );
-    });
+        return (
+          matchesSearch &&
+          matchesCategory &&
+          matchesSeverity
+        );
+      }
+    );
 
   /* =========================
      SORT
@@ -266,29 +384,51 @@ function Explore({
   ].sort((a, b) => {
     if (sort === "Newest") {
       return (
-        new Date(b.createdAt || 0) -
-        new Date(a.createdAt || 0)
+        new Date(
+          b.createdAt || 0
+        ) -
+        new Date(
+          a.createdAt || 0
+        )
       );
     }
 
     if (sort === "Oldest") {
       return (
-        new Date(a.createdAt || 0) -
-        new Date(b.createdAt || 0)
+        new Date(
+          a.createdAt || 0
+        ) -
+        new Date(
+          b.createdAt || 0
+        )
       );
     }
 
-    if (sort === "Highest Reward") {
+    if (
+      sort ===
+      "Highest Reward"
+    ) {
       return (
-        Number(b.reward || 0) -
-        Number(a.reward || 0)
+        Number(
+          b.reward || 0
+        ) -
+        Number(
+          a.reward || 0
+        )
       );
     }
 
-    if (sort === "Lowest Reward") {
+    if (
+      sort ===
+      "Lowest Reward"
+    ) {
       return (
-        Number(a.reward || 0) -
-        Number(b.reward || 0)
+        Number(
+          a.reward || 0
+        ) -
+        Number(
+          b.reward || 0
+        )
       );
     }
 
@@ -299,36 +439,33 @@ function Explore({
      VIEW BOUNTY
   ========================= */
 
-  const handleViewBounty = (bounty) => {
-    if (typeof onViewBounty === "function") {
-      onViewBounty(bounty);
-    }
-  };
+  const handleViewBounty =
+    (bounty) => {
+      if (
+        typeof onViewBounty ===
+        "function"
+      ) {
+        onViewBounty(
+          bounty
+        );
+      }
+    };
 
   /* =========================
      HOME
   ========================= */
 
-  const handleHome = (event) => {
-    event.preventDefault();
+  const handleHome =
+    (event) => {
+      event.preventDefault();
 
-    if (typeof onBack === "function") {
-      onBack();
-    }
-  };
-
-  /* =========================
-     EXPLORE
-  ========================= */
-
-  const handleExplore = (event) => {
-    event.preventDefault();
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+      if (
+        typeof onBack ===
+        "function"
+      ) {
+        onBack();
+      }
+    };
 
   /* =========================
      UI
@@ -336,10 +473,6 @@ function Explore({
 
   return (
     <div className="explore-page">
-
-      {/* =========================
-          NAVBAR
-      ========================= */}
 
       <header className="explore-header">
 
@@ -352,25 +485,26 @@ function Explore({
           <a
             href="#explore"
             className="active"
-            onClick={handleExplore}
+            onClick={(event) => {
+              event.preventDefault();
+
+              window.scrollTo({
+                top: 0,
+                behavior:
+                  "smooth",
+              });
+            }}
           >
             Explore
           </a>
 
           <a
             href="#home"
-            onClick={handleHome}
-          >
-            Home
-          </a>
-
-          <a
-            href="#how-it-works"
-            onClick={(e) =>
-              e.preventDefault()
+            onClick={
+              handleHome
             }
           >
-            How It Works
+            Home
           </a>
 
         </nav>
@@ -388,43 +522,44 @@ function Explore({
 
       </header>
 
-      {/* =========================
-          HERO
-      ========================= */}
-
       <section
         className="explore-hero"
         id="explore"
       >
 
         <div className="hero-label">
-          SECURITY RESEARCH
+          CODE CHALLENGES
         </div>
 
         <h1>
           Explore{" "}
-          <span>Bug Bounties</span>
+          <span>
+            Bug Bounties
+          </span>
         </h1>
 
         <p>
-          Find vulnerabilities. Help secure
-          products. Earn rewards.
+          Find bugs. Fix code.
+          Earn rewards.
           <br />
-          Choose a bounty and start hunting.
+          Choose a challenge and
+          start coding.
         </p>
-
-        {/* SEARCH */}
 
         <div className="search-box">
 
-          <span>⌕</span>
+          <span>
+            ⌕
+          </span>
 
           <input
             type="text"
-            placeholder="Search bounties, companies, vulnerabilities..."
+            placeholder="Search challenges..."
             value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
+            onChange={(event) =>
+              setSearch(
+                event.target.value
+              )
             }
           />
 
@@ -432,15 +567,7 @@ function Explore({
 
       </section>
 
-      {/* =========================
-          MAIN CONTENT
-      ========================= */}
-
       <main className="explore-content">
-
-        {/* =========================
-            FILTER SIDEBAR
-        ========================= */}
 
         <aside className="filters">
 
@@ -448,194 +575,99 @@ function Explore({
             FILTERS
           </h3>
 
-          {/* CATEGORY */}
-
           <div className="filter-group">
 
             <h4>
               CATEGORY
             </h4>
 
-            <button
-              className={
-                category === "All"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setCategory("All")
-              }
-            >
-              All Bounties
-            </button>
-
-            <button
-              className={
-                category === "Web Security"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setCategory(
-                  "Web Security"
-                )
-              }
-            >
-              Web Security
-            </button>
-
-            <button
-              className={
-                category === "API Security"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setCategory(
-                  "API Security"
-                )
-              }
-            >
-              API Security
-            </button>
-
-            <button
-              className={
-                category === "Mobile Security"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setCategory(
-                  "Mobile Security"
-                )
-              }
-            >
-              Mobile Security
-            </button>
-
-            <button
-              className={
-                category ===
-                "Network Security"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setCategory(
-                  "Network Security"
-                )
-              }
-            >
-              Network Security
-            </button>
+            {[
+              "All",
+              "Web Development",
+              "DSA",
+            ].map(
+              (item) => (
+                <button
+                  key={item}
+                  className={
+                    category === item
+                      ? "active-filter"
+                      : ""
+                  }
+                  onClick={() =>
+                    setCategory(
+                      item
+                    )
+                  }
+                >
+                  {item === "All"
+                    ? "All Challenges"
+                    : item}
+                </button>
+              )
+            )}
 
           </div>
-
-          {/* SEVERITY */}
 
           <div className="filter-group">
 
             <h4>
-              SEVERITY
+              DIFFICULTY
             </h4>
 
-            <button
-              className={
-                severity === "All"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setSeverity("All")
-              }
-            >
-              All Severities
-            </button>
-
-            <button
-              className={
-                severity === "Critical"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setSeverity("Critical")
-              }
-            >
-              Critical
-            </button>
-
-            <button
-              className={
-                severity === "High"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setSeverity("High")
-              }
-            >
-              High
-            </button>
-
-            <button
-              className={
-                severity === "Medium"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setSeverity("Medium")
-              }
-            >
-              Medium
-            </button>
-
-            <button
-              className={
-                severity === "Low"
-                  ? "active-filter"
-                  : ""
-              }
-              onClick={() =>
-                setSeverity("Low")
-              }
-            >
-              Low
-            </button>
+            {[
+              "All",
+              "Low",
+              "Medium",
+              "High",
+            ].map(
+              (item) => (
+                <button
+                  key={item}
+                  className={
+                    severity === item
+                      ? "active-filter"
+                      : ""
+                  }
+                  onClick={() =>
+                    setSeverity(
+                      item
+                    )
+                  }
+                >
+                  {item === "All"
+                    ? "All Difficulties"
+                    : item}
+                </button>
+              )
+            )}
 
           </div>
 
         </aside>
 
-        {/* =========================
-            BOUNTY SECTION
-        ========================= */}
-
         <section className="bounty-section">
-
-          {/* TOP BAR */}
 
           <div className="bounty-top">
 
             <div>
 
               <h2>
-                Available Bounties
+                Available Challenges
               </h2>
 
               <p>
-                {filteredBounties.length}{" "}
-                {filteredBounties.length === 1
-                  ? "bounty"
-                  : "bounties"}{" "}
+                {
+                  filteredBounties.length
+                }{" "}
+                {filteredBounties.length ===
+                1
+                  ? "challenge"
+                  : "challenges"}{" "}
                 available
               </p>
 
             </div>
-
-            {/* SORT */}
 
             <div className="sort-box">
 
@@ -645,8 +677,10 @@ function Explore({
 
               <select
                 value={sort}
-                onChange={(e) =>
-                  setSort(e.target.value)
+                onChange={(event) =>
+                  setSort(
+                    event.target.value
+                  )
                 }
               >
 
@@ -672,11 +706,8 @@ function Explore({
 
           </div>
 
-          {/* =========================
-              BOUNTY GRID
-          ========================= */}
-
-          {filteredBounties.length > 0 ? (
+          {filteredBounties.length >
+          0 ? (
 
             <div className="bounty-grid">
 
@@ -685,16 +716,17 @@ function Explore({
 
                   <div
                     className="bounty-card"
-                    key={bounty.id}
+                    key={
+                      bounty.id
+                    }
                   >
-
-                    {/* CARD TOP */}
 
                     <div className="card-top">
 
                       <span className="bounty-tag">
-                        {bounty.category ||
-                          "Security"}
+                        {
+                          bounty.category
+                        }
                       </span>
 
                       <span className="deadline">
@@ -704,62 +736,36 @@ function Explore({
 
                     </div>
 
-                    {/* TITLE */}
-
                     <h3>
-                      {bounty.title ||
-                        "Untitled Bounty"}
+                      {bounty.title}
                     </h3>
-
-                    {/* COMPANY */}
 
                     <div className="company">
                       {bounty.company ||
-                        "Independent Researcher"}
+                        "Community"}
                     </div>
 
-                    {/* DESCRIPTION */}
-
                     <p>
-                      {bounty.description ||
-                        "No description provided."}
+                      {
+                        bounty.description
+                      }
                     </p>
-
-                    {/* TAGS */}
 
                     <div className="card-tags">
 
                       <span>
-                        {bounty.severity ||
-                          "Medium"}
+                        {bounty.difficulty ||
+                          bounty.severity ||
+                          "Easy"}
                       </span>
 
                       <span>
-                        {bounty.category ||
-                          "Security"}
+                        {
+                          bounty.category
+                        }
                       </span>
 
-                      {Array.isArray(
-                        bounty.tags
-                      ) &&
-                        bounty.tags
-                          .slice(0, 2)
-                          .map(
-                            (
-                              tag,
-                              index
-                            ) => (
-                              <span
-                                key={`${tag}-${index}`}
-                              >
-                                {tag}
-                              </span>
-                            )
-                          )}
-
                     </div>
-
-                    {/* STATUS */}
 
                     <div className="card-status">
 
@@ -783,8 +789,6 @@ function Explore({
                       </strong>
 
                     </div>
-
-                    {/* BOTTOM */}
 
                     <div className="card-bottom">
 
@@ -830,12 +834,12 @@ function Explore({
             <div className="no-results">
 
               <h3>
-                No bounties found
+                No challenges found
               </h3>
 
               <p>
-                Try changing your search
-                or filters.
+                Try changing your
+                search or filters.
               </p>
 
             </div>
